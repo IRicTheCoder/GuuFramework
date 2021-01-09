@@ -1,0 +1,144 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using Guu.Utils;
+using UnityEngine;
+
+namespace Guu.API.Identifiables
+{
+	/// <summary>
+	/// This is the base class to make slimes
+	/// </summary>
+	public abstract class Slime : IdentifiableItem
+	{
+		// Base item to create this one
+		private static GameObject BaseItem => GameContext.Instance.LookupDirector?.GetPrefab(Identifiable.Id.PINK_SLIME) ?? 
+		                                      SRObjects.Get<GameObject>("slimePink");
+		 
+		// Overrides
+		protected override string NamePrefix => "slime";
+
+		// Abstracts
+		protected abstract Identifiable.Id Plort { get; }
+		protected abstract SlimeDefinition Definition { get; }
+		protected abstract List<SlimeEat.FoodGroup> FoodGroups { get; }
+		
+		// Virtual
+		protected virtual bool CustomDietBehaviour { get; } = false;
+		protected virtual int Health { get; } = 20;
+		
+		public virtual float DamagePerAttack { get; } = 20;
+		protected virtual float MinDriveToEat { get; } = 0.333f;
+		protected virtual float DrivePerEat { get; } = 0.333f;
+		protected virtual float AgitationPerEat { get; } = 0.15f;
+		protected virtual float AgitationPerFavEat { get; } = 0.3f;
+
+		protected virtual GameObject CustomBase { get; } = null;
+
+		protected virtual List<Identifiable.Id> FavoriteFoods { get; } = null;
+
+		// Methods
+		protected override bool ValidSiloAmmo(SiloStorage.StorageType type) => false;
+
+		protected override void Build()
+		{
+			// Get GameObjects
+			Prefab = CustomBase != null ? PrefabUtils.BuildPrefab(NamePrefix + Name, CustomBase) : PrefabUtils.BuildPrefab(NamePrefix + Name, BaseItem);
+			Prefab.transform.localScale = Scale * Definition.PrefabScale;
+
+			// Load Components
+			SlimeAppearanceApplicator app = Prefab.GetComponent<SlimeAppearanceApplicator>();
+			SlimeVarietyModules mod = Prefab.GetComponent<SlimeVarietyModules>();
+			SlimeEat eat = Prefab.GetComponent<SlimeEat>();
+			SlimeHealth hp = Prefab.GetComponent<SlimeHealth>();
+
+			Rigidbody body = Prefab.GetComponent<Rigidbody>();
+			Vacuumable vac = Prefab.GetComponent<Vacuumable>();
+			Identifiable iden = Prefab.GetComponent<Identifiable>();
+			
+			// Setup Components
+			app.SlimeDefinition = Definition;
+			app.Appearance = Definition.AppearancesDefault[0];
+			mod.baseModule = Definition.BaseModule;
+			mod.slimeModules = Definition.SlimeModules;
+
+			eat.slimeDefinition = Definition;
+			eat.minDriveToEat = MinDriveToEat;
+			eat.drivePerEat = DrivePerEat;
+			eat.agitationPerEat = AgitationPerEat;
+			eat.agitationPerFavEat = AgitationPerFavEat;
+
+			hp.maxHealth = Health;
+
+			body.mass = Mass;
+			vac.size = Size;
+			iden.id = ID;
+
+			// Get rid of unneeded components
+			Object.Destroy(Prefab.GetComponent<PinkSlimeFoodTypeTracker>());
+		}
+
+		/// <summary>Registers the item into it's registry</summary>
+		public override IdentifiableItem Register()
+		{
+			base.Register();
+
+			Definition.Diet.EatMap = new List<SlimeDiet.EatMapEntry>();
+			SlimeDiet diet = Definition.Diet;
+
+			if (CustomDietBehaviour || FoodGroups.Count <= 0) return this;
+
+			// TODO: Replace this with FoodGroupRegistry
+			List<Identifiable.Id> AdditionalFoods = new List<Identifiable.Id>();
+			
+			if (FoodGroups.Contains(SlimeEat.FoodGroup.FRUIT))
+			{
+				SlimeUtils.PopulateDiet(ID, Identifiable.FRUIT_CLASS, diet, FavoriteFoods, Plort);
+				AdditionalFoods.AddRange(Identifiable.FRUIT_CLASS);
+			}
+
+			if (FoodGroups.Contains(SlimeEat.FoodGroup.VEGGIES))
+			{
+				SlimeUtils.PopulateDiet(ID, Identifiable.VEGGIE_CLASS, diet, FavoriteFoods, Plort);
+				AdditionalFoods.AddRange(Identifiable.VEGGIE_CLASS);
+			}
+
+			if (FoodGroups.Contains(SlimeEat.FoodGroup.MEAT))
+			{
+				SlimeUtils.PopulateDiet(ID, Identifiable.MEAT_CLASS, diet, FavoriteFoods, Plort);
+				AdditionalFoods.AddRange(Identifiable.MEAT_CLASS);
+			}
+
+			if (FoodGroups.Contains(SlimeEat.FoodGroup.GINGER))
+			{
+				SlimeUtils.PopulateDiet(ID, new[]
+				{
+					Identifiable.Id.GINGER_VEGGIE
+				}, diet, FavoriteFoods, Plort);
+				
+				AdditionalFoods.Add(Identifiable.Id.GINGER_VEGGIE);
+			}
+
+			if (FoodGroups.Contains(SlimeEat.FoodGroup.PLORTS))
+			{
+				SlimeUtils.PopulateDiet(ID, Identifiable.PLORT_CLASS, diet, FavoriteFoods, Plort, true);
+				AdditionalFoods.AddRange(Identifiable.PLORT_CLASS);
+				Definition.CanLargofy = false;
+			}
+
+			//if (FoodGroups.Contains(SlimeEat.FoodGroup.NONTARRGOLD_SLIMES)) { }
+			
+			// TODO: Make a way to add new food groups
+			// TODO: Add the new diets
+			SlimeUtils.PopulateDiet(ID, Identifiable.TOFU_CLASS, diet, FavoriteFoods, Plort);
+			AdditionalFoods.AddRange(Identifiable.TOFU_CLASS);
+
+			Definition.Diet.MajorFoodGroups = FoodGroups.ToArray();
+			Definition.Diet.Produces = new[] {Plort};
+			Definition.Diet.Favorites = FavoriteFoods.ToArray();
+			Definition.Diet.FavoriteProductionCount = 2;
+			Definition.Diet.AdditionalFoods = AdditionalFoods.Where(food => !FavoriteFoods.Contains(food)).ToArray();
+
+			return this;
+		}
+	}
+}
