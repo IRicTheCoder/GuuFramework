@@ -1,4 +1,4 @@
-# GuuFramework
+# Guu Framework
 The Guu Framework is a Library and Mod Loader for [Slime Rancher](https://store.steampowered.com/app/433340/Slime_Rancher/) to allow players to create mods. Different from the current mod loaders for the game, Guu does not require any patching done to the game to be able to inject itself into the game.
 
 Using a sort-of loader called [Doorstop](https://github.com/NeighTools/UnityDoorstop) and by having it load Guu's entry point the game recognizes it without having to be patched, making it easier to use and remove.
@@ -26,10 +26,10 @@ Eden is a framework developed by me mainly for game development, however it does
 Guu contains a lot of features, the following list contains the most important of those features as well as a list o features provided by the External Libraries to modders.
 
 ### Guu Framework
-All features and their respective description can be found [here](), as for documentation on each thing it is still being developed. All changelogs can be found [here](https://github.com/RicardoTheCoder/GuuFramework/tree/main/.changelogs)
+All features and their respective description can be found [here](https://github.com/RicardoTheCoder/GuuFramework/blob/main/.features/guu.md), as for documentation on each thing it is still being developed. All changelogs can be found [here](https://github.com/RicardoTheCoder/GuuFramework/tree/main/.changelogs)
 
 ### Eden Framework
-The important feature list for modding can be found [here](), while the complete feature list will be available soon on Eden's Github page. Documentation will be available soon too.
+The important feature list for modding can be found [here](https://github.com/RicardoTheCoder/GuuFramework/blob/main/.features/eden.md), while the complete feature list and documentation can be found on Eden's Github page (currently unavailable).
 
 ### Harmony
 All features and documentation for harmony can be found [here](https://harmony.pardeike.net/articles/intro.html).
