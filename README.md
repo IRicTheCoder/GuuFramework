@@ -28,8 +28,6 @@ Only the required files are shipped with Guu, as Eden works in modules and not a
 _**Please note** that Eden is also in constant development, so sometimes Guu will wait for an update to release or fix a feature dependent of Eden_
 
 ## Feature List
-Guu contains a lot of features, the following list contains the most important of those features as well as a list o features provided by the External Libraries to modders.
-
 ### Guu Framework
 All features and their respective description can be found [here](https://github.com/RicardoTheCoder/GuuFramework/blob/main/.features/guu.md), as for documentation on each thing it is still being developed. All changelogs can be found [here](https://github.com/RicardoTheCoder/GuuFramework/tree/main/.changelogs)
 
