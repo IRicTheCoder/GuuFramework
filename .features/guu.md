@@ -50,13 +50,13 @@ The crash handler taps into the system to catch all and any crash that might occ
 ### `Enum` Injector
 > **This feature is not available when using another mod loader to load your mods**
 
-This uses the `EnumFixer` available in Eden, to add `enum` values during runtime. And will facilitate the injection of any `enum` into the game without conflicting with other `enum` patchers from other loaders. 
+This uses the `EnumFixer` available in Eden, to add enum values during runtime. And will facilitate the injection of any enum into the game without conflicting with other enum patchers from other loaders. 
 
 - Injects using `EnumFixer` provided by Eden.
-- `Enums` can only be injected into the game during the Initialization step of the mod, meaning that it is only usable inside the `ModMain.Init()` method.
-- Allows for any `enum` to be injected dynamically.
-- Can use `EnumInject` annotation to mark a `class` for `enum` injection.
-  - Will inject and set the `field` value to the inject one for any `field` of any `enum` type.
-  - `Fields` must be `static` and `readonly`
-  - `Fields` need to have the default value of `0`
-- If the `enum` name already exists, it will populate the `field` with the current value instead of making a new one.
+- Enums can only be injected into the game during the Initialization step of the mod, meaning that it is only usable inside the `ModMain.Init()` method.
+- Allows for any enum to be injected dynamically.
+- Can use `EnumInject` annotation to mark a class for enum injection.
+  - Will inject and set the field value to the inject one for any field of any enum type.
+  - Fields must be `static` and `readonly`
+  - Fields need to have the default value of `0`
+- If the enum name already exists, it will populate the field with the current value instead of making a new one.
