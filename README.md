@@ -24,10 +24,9 @@ Eden is a framework developed by me ([RicTheCoder](https://ricthecoder.com/)) ma
 
 Only the required files are shipped with Guu, as Eden works in modules and not all is required if not used. If you wish to use a module from Eden not available with Guu, you can add it as an addon library to Guu (the how to coming soon).
 
-**To patch the game** EdenHarmony is the go to system, it is easier to use, makes patch classes easier to read and has new functionality that the original Harmony does not provide.
+**TO PATCH THE GAME** EdenHarmony is the go to system, it is easier to use, makes patch classes easier to read and has new functionality that the original Harmony does not provide.
 
-
-_**Please note** that Eden is also in constant development, so sometimes Guu will wait for an update to release or fix a feature dependent of Eden_
+_**PLEASE NOTE** that Eden is also in constant development, so sometimes Guu will wait for an update to release or fix a feature dependent of Eden_
 
 ## Feature List
 ### Guu Framework
