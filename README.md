@@ -26,7 +26,7 @@ Eden is a framework developed by me mainly for game development, however it does
 Guu contains a lot of features, the following list contains the most important of those features as well as a list o features provided by the External Libraries to modders.
 
 ### Guu Framework
-All features and their respective description can be found [here](), as for documentation on each thing it is still being developed.
+All features and their respective description can be found [here](), as for documentation on each thing it is still being developed. All changelogs can be found [here](https://github.com/RicardoTheCoder/GuuFramework/tree/main/.changelogs)
 
 ### Eden Framework
 The important feature list for modding can be found [here](), while the complete feature list will be available soon on Eden's Github page. Documentation will be available soon too.
