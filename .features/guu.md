@@ -7,7 +7,7 @@ Documentation is currently being developed, this file will be dropped in favor t
 
 **For context** the **Guu Framework** is referenced to as **Guu**, while the **Eden Framework** is referenced to as **Eden**
 
-### General
+## General
 These are just general features and each point just lists some important general information related to what the framework does and how it works.
 
 - Uses Doorstop (previously known as Unity Doorstop) to load the assembly into the game without patching any of the game's files. 
@@ -31,13 +31,13 @@ These are just general features and each point just lists some important general
   - *`Guu/Reports`* - Crash reports will be created inside this folder, and only the last 10 will be available, older ones will be deleted automatically.
   - *`Guu/Saves`* - Currently is not being used, but will contain the current save files (copies of the ones in the appdata), and will contain Guu specific files.
   
-### Addon Libraries
+## Addon Libraries
 Any library (*`.dll`* file) present inside *`Guu/Libraries`* will be loaded into the game as an addon library, this is useful to add new modules to Guu. This can also be used for the same purpose as the *Core Mods* from *Minecraft Forge*.
 
 - Allows modders to create new modules for Guu.
 - If the module contains a class that inherits from `IAddonLoad`, a call to that class will be done when loading the addon library.
 
-### Crash Handler
+## Crash Handler
 The crash handler taps into the system to catch all and any crash that might occur inside the game, no exception/crash will be uncaught unless it occurs outside the normal runtime of the game, that is a limitation that can't be worked around at the moment.
 
 - Can capture any crash caused by the game, a mod or unity itself.
@@ -47,7 +47,7 @@ The crash handler taps into the system to catch all and any crash that might occ
   - You can also copy the report text diretly to your clipboard.
   - There is a button to open the report folder.
   
-### `Enum` Injector
+## `Enum` Injector
 > **This feature is not available when using another mod loader to load your mods**
 
 This uses the `EnumFixer` available in Eden, to add enum values during runtime. And will facilitate the injection of any enum into the game without conflicting with other enum patchers from other loaders. 
@@ -61,7 +61,7 @@ This uses the `EnumFixer` available in Eden, to add enum values during runtime. 
   - Fields need to have the default value of `0`
 - If the enum name already exists, it will populate the field with the current value instead of making a new one.
 
-### Log System
+## Log System
 Guu comes with a custom logging system in place to facilitate logging things into both files and the console itself. It is easy to use and mimics partially Unity's log system.
 
 - When a mod is loaded, a logger is provided and can be accessed using `ModMain.Logger`.
@@ -69,7 +69,7 @@ Guu comes with a custom logging system in place to facilitate logging things int
   - If you load your mod from another loader, you have to create an instance of `ModLogger` yourself.
 - Custom log files can be provided to any `ModLogger` to allow that logger to also log to said file.
 
-### Mod Loader
+## Mod Loader
 > **This feature is not available when using another mod loader to load your mods**
 
 Because you need a way to load mods if you want to use only Guu, a Mod loading system is also provided so mods can be loaded into the game. To make sure loading is done right, some conventions are required to be uphold to make sure everything works as expected, so if said conventions are not uphold, the mod will not load.
@@ -95,7 +95,7 @@ Because you need a way to load mods if you want to use only Guu, a Mod loading s
   - Fields must be `static` and `readonly`.
   - Fields have to be of type `bool`.
 
-### Asset Packs
+## Asset Packs
 To facilitate the load of assets into the game, Guu provides Asset Packs which are similar to Unity's *Asset Bundles*. These packs use the *Asset Bundle* under the hood to save assets from the *Unity Editor* and load them into the game. However they offer better methods to acquire assets from them, also they can load API Files automatically and register them. A tool to save them from within the editor is provided by Guu's Dev Kit.
 
 - Assets Packs are loaded with `AssetLoader`.
@@ -107,14 +107,14 @@ To facilitate the load of assets into the game, Guu provides Asset Packs which a
   - All assets should be used and/or cached during mod loading whenever possible to prevent memory leaks.
 - A creation tool is provided by Guu's Dev Kit to create asset packs easily within *Unity Editor*.
 
-### Guu Services
+## Guu Services
 Guu provides services, those are features that are only loaded and used if a mod asks for them, so they will be inactive until some mod initializes them. There are two services that are always running, they are considered services because they are only truly useful game wise if a mod uses them, but Guu also taps into them to do some of it's work.
 
 - System Windows, this service allows mods to register windows that are part of the system and not the game.
   - There windows use the *IMGUI* or *Legacy GUI* system provided by Unity draw them.
   - They serve as windows that do interface with the game directly and are used as special menus for mods (Ex: Console, Cheat Menu...).
   
-### SRML Bridge
+## SRML Bridge
 **This only gets loaded if SRML is present** and is used as a Bridge to better integrate them together, this is required to prevent both loader from overlapping each other and causing unnecessary problems.
 
 - Removes the console provided by SRML in favor of Guu's Console.
@@ -126,7 +126,7 @@ Guu provides services, those are features that are only loaded and used if a mod
 - Allows Guu to check if a SRML mod is loaded.
 - Allows Guu to check if an assembly belongs to a SRML mod.
 
-### Guu Console
+## Guu Console
 The almighty Guu console that also works as a Cheat Menu and some other things. Guu's Console resides in the Dev Tools Window that contains a bunch of system related things, from the console to the cheat menu. The console is overpowered with the ability to execute some powerful debug commands to check objects and their values without having to log them into the console by code.
 
 - Allows new commands to be registered.
@@ -142,7 +142,7 @@ The almighty Guu console that also works as a Cheat Menu and some other things. 
   - Registering the same method more than once won't make it run multiple times, as the catchers are invoked as unique.
 - All items, except command catchers, can have the replace flag set to `true` to replace values if conflicts arise.
 
-### Language Controller
+## Language Controller
 Controls the entire language and translation system within the game, and allows modders to add their own translations or load them directly from language files. It also fixes some issues with the language in game as well as provide new features not available on the original game.
 
 - Can register new languages to the game.
@@ -153,14 +153,14 @@ Controls the entire language and translation system within the game, and allows 
 - Can register alternative ids for languages instead of using the default ones provided by `Culture`.
 - Language files are .yaml for compatibility with most team localization tools (Ex: Crowdin).
 
-### SR Objects
+## SR Objects
 A system that can get any asset or object from the game, these objects can be retrieved in two different ways, from the resources and/or from the world/scene.
 
 - Aids in getting an object from the game.
 - Contains some already obtained values that are common.
 - When using it please cache the value or use it only at load to prevent memory leaks.
 
-### Improved Market
+## Improved Market
 The Plort Market is one of the most problematic things when registering new content, if the limit is reached, it will either crash the game or stop setting the values right. This fixes the problem by replacing the Market with a custom version.
 
 - Fixes the market display when the limit of plorts is exceeded
@@ -168,15 +168,15 @@ The Plort Market is one of the most problematic things when registering new cont
   - After being shown they will still be greyed out unless both states are unlocked by the same thing
 - Plort entries can check if a progress is achieved as well as the number of said progress
 
-## Eden Framework - Relevant Features for Modding
+# Eden Framework - Relevant Features for Modding
 Eden provides a lot of features overall, focused on game development, but also useful for software development in general. Guu uses Eden to allow it to go a bit further than commonly possible and provide the most advanced and useful tools possible to make mods for the game. The following list contains only the features that are relevant for using when making mods.
 
-### General
+## General
 Just some general features that can greatly improve development in any sense.
 
 - Allows the easy creation of Singletons.
 
-### Event Handling
+## Event Handling
 Improves the event handling system provided by C#, making this system far more powerful and useful then just the normal registration and invocation features. This does not override the default system and that can still be used to bypass the handler.
 
 - Upgrades the current `event` system provided by C#.
@@ -190,14 +190,14 @@ Improves the event handling system provided by C#, making this system far more p
 - The context can be obtained using `EventHandler.GetContext<T>()`.
 - You can use `event.Invoke(args)` to bypass these features.
 
-### Enum Fixer
+## Enum Fixer
 Grants the ability to add custom enum values and names during runtime, this does not actually change the structure of the object/enum, it just redirects the calls to its methods into the holder that contains the extra data.
 
 - Allows custom values and names to be added to enums.
 - If a name is already present will reuse the value already present.
 - All values start at `1000000` (1 million) to avoid problems.
 
-### Eden Harmony
+## Eden Harmony
 Eden Harmony is an enhanced version of the Harmony system, it still depends on the Harmony library to work and simply improves things on top of it. It also adds a different (and maybe better) way to design patch classes. All these features require the use o `EdenHarmony` instead of `Harmony`, the first inherits from the latter so only `EdenHarmony` needs to be called even if patches from the original systema are present.
 
 - Patch class names need to always be *`TypeName_PatchX`*.
