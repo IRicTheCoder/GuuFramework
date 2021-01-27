@@ -15,7 +15,7 @@ These are just general features and each point just lists some important general
 - The log file from Unity is copied from its normal place to the Guu's folder, and it's named *Unity.log*
 - Disables the Sentry SDK from the game to prevent messages from modded games going to Monomi Park.
 - Reads custom command line arguments to allow custom behaviours (modders can tap into this).
-  - `--debug` Runs the game in a sort of Debug Mode created by Guu
+  - **`--debug`** Runs the game in a sort of Debug Mode created by Guu
   - `--guuDebug` - Activates Guu Debug Mode which presents further information (not required in most cases)
   - ***--guuLauncher*** - Added by the Launcher to check if the launcher was used to launch the game, prevents the game from launching if not set. Debug Mode ignores this.
   - ***--guuSilent*** - Prevents the game from reopening the launcher when the game closes. Debug Mode ignores this.
