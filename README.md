@@ -5,6 +5,8 @@ Using a sort-of loader called [Doorstop](https://github.com/NeighTools/UnityDoor
 
 Guu brings the ability to not only write code and add it to the game easily through a easy to use yet powerful API, but it also allows modders to patch the game's code to add their own as well as use Untiy directly when making content for each mod.
 
+**PLEASE NOTE** that Guu can be used as a Library (to make your mods) even if you are loading your mod using another Loader. But some features might not be available if you do so. You do not need to worry about assemblies being available when your mod loads with a different loader as Guu loads before Unity itself.
+
 ## Guu's Dev Kit (For Unity)
 Along side the framework itself, you will also find a .unitypackage file that will install the Dev Kit directly into Unity. This Dev Kit will allow the creation of content from normal Assets to Prefabs directly in the Editor.
 
