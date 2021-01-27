@@ -20,7 +20,12 @@ loaders). Modders can use this to make their patches but it's highly discourage 
 ### Eden Framework
 Eden is a framework developed by me ([RicTheCoder](https://ricthecoder.com/)) mainly for game development, however it does serve a lot of purposes and contains an extensive and powerful library of code. Examples of this would be EdenHarmony an improved version of the Harmony's original system and the Event Handling system that allows better handling of C# events. A lot of useful tools are provided by this and modders can access it to use said tools.
 
+Only the required files are shipped with Guu, as Eden works in modules and not all is required if not used. If you wish to use a module from Eden not available with Guu, you can add it as an addon library to Guu (the how to coming soon).
+
 **To patch the game** EdenHarmony is the go to system, it is easier to use, makes patch classes easier to read and has new functionality that the original Harmony does not provide.
+
+
+_**Please note** that Eden is also in constant development, so sometimes Guu will wait for an update to release or fix a feature dependent of Eden_
 
 ## Feature List
 Guu contains a lot of features, the following list contains the most important of those features as well as a list o features provided by the External Libraries to modders.
