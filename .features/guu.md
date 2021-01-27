@@ -176,7 +176,7 @@ Just some general features that can greatly improve development in any sense.
 
 - Allows the easy creation of Singletons.
 
-## Event Handling
+## `Event` Handling
 Improves the event handling system provided by C#, making this system far more powerful and useful then just the normal registration and invocation features. This does not override the default system and that can still be used to bypass the handler.
 
 - Upgrades the current `event` system provided by C#.
@@ -190,7 +190,7 @@ Improves the event handling system provided by C#, making this system far more p
 - The context can be obtained using `EventHandler.GetContext<T>()`.
 - You can use `event.Invoke(args)` to bypass these features.
 
-## Enum Fixer
+## `Enum` Fixer
 Grants the ability to add custom enum values and names during runtime, this does not actually change the structure of the object/enum, it just redirects the calls to its methods into the holder that contains the extra data.
 
 - Allows custom values and names to be added to enums.
