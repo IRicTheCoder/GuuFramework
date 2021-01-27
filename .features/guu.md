@@ -32,7 +32,7 @@ These are just general features and each point just lists some important general
   - *`Guu/Saves`* - Currently is not being used, but will contain the current save files (copies of the ones in the appdata), and will contain Guu specific files.
   
 ### Addon Libraries
-Any library (*`.dll`* file) present inside *Guu/Libraries* will be loaded into the game as an addon library, this is useful to add new modules to Guu. This can also be used for the same purpose as the *Core Mods* from *Minecraft Forge*.
+Any library (*`.dll`* file) present inside *`Guu/Libraries`* will be loaded into the game as an addon library, this is useful to add new modules to Guu. This can also be used for the same purpose as the *Core Mods* from *Minecraft Forge*.
 
 - Allows modders to create new modules for Guu.
 - If the module contains a class that inherits from `IAddonLoad`, a call to that class will be done when loading the addon library.
@@ -70,6 +70,8 @@ Guu comes with a custom logging system in place to facilitate logging things int
 - Custom log files can be provided to any `ModLogger` to allow that logger to also log to said file.
 
 ### Mod Loader
+> **This feature is not available when using another mod loader to load your mods**
+
 Because you need a way to load mods if you want to use only Guu, a Mod loading system is also provided so mods can be loaded into the game. To make sure loading is done right, some conventions are required to be uphold to make sure everything works as expected, so if said conventions are not uphold, the mod will not load.
 
 - Every mod needs to be inside its own folder
@@ -83,15 +85,27 @@ Because you need a way to load mods if you want to use only Guu, a Mod loading s
   - Multiple modules can be loaded, one for each `ModModule` annotation present
   - Modules require a class to inherit from `ModuleMain` in other to have an entry point.
 - Can check if mods or assemblies are loaded
-  - `ModLoader.IsModLoaded` can be used to check, by ID, for those loaded by Guu. Or use the ID with special prefixes to check other loaders.
+  - `ModLoader.IsModLoaded(ID)` can be used to check, by ID, for those loaded by Guu. Or use the ID with special prefixes to check other loaders.
     - `srml:ID` can be used to check if there SRML has a loaded mod with mod id ID.
-    - `assem:ID` will call `ModLoader.IsAssemblyLoaded` using ID.
-  - `ModLoader.IsAssemblyLoaded` can be used to check, by simplified name, if an assembly is loaded.
-- For Modders use, using `ModLoader.GetAllUnknownAssemblies` a file will be dumped into the Game's root folder with a list of all assemblies the loader couldn't identify.
+    - `assem:ID` will call `ModLoader.IsAssemblyLoaded(name)` using ID as name.
+  - `ModLoader.IsAssemblyLoaded(name)` can be used to check, by simplified name, if an assembly is loaded.
+- For Modders use, using `ModLoader.GetAllUnknownAssemblies()` a file will be dumped into the Game's root folder with a list of all assemblies the loader couldn't identify.
 - Any field with `IsLoaded` annotation will be populated with the loading state of said mod by the `IsLoadedInjector`
-  - The ID provided to `IsLoaded` follows the same rules used fofr `ModLoader.IsModLoaded`
+  - The ID provided to `IsLoaded` follows the same rules used fofr `ModLoader.IsModLoaded(ID)`
   - Fields must be `static` and `readonly`
   - Fields have to be of type `bool`
+
+### Asset Packs
+To facilitate the load of assets into the game, Guu provides Asset Packs which are similar to Unity's *Asset Bundles*. These packs use the *Asset Bundle* under the hood to save assets from the *Unity Editor* and load them into the game. However they offer better methods to acquire assets from them, also they can load API Files automatically and register them. A tool to save them from within the editor is provided by Guu's Dev Kit.
+
+- Assets Packs are loaded with `AssetLoader`
+  - Assets can be loaded from any given path
+  - Assets can be loaded from the mod's *`Assets`* folder directly
+- Asset Packs use the *Asset Bundle* system under the hood, but are easier to use.
+  - Any asset can be obtained by using `AssetPack.Get<T>(name)`
+  - Can get all assets of a type using `AssetPack.GetAll<T>()`
+  - All assets should be used and/or cached during mod loading whenever possible to prevent memory leaks
+- A creation tool is provided by Guu's Dev Kit to create asset packs easily within *Unity Editor*
 
 ### Improved Market
 The Plort Market is one of the 
