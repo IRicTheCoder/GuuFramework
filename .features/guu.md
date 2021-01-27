@@ -11,8 +11,8 @@ For context the **Guu Framework** is referenced to as **Guu**, while the **Eden 
 These are just general features and each point just lists some important general information related to what the framework does and how it works.
 
 - Uses Doorstop (previously known as Unity Doorstop) to load the assembly into the game without patching any of the game's files. 
-  - A log file called *Injection.log* is found within Guu's folder that provides a log of the injection process
-- The log file from Unity is copied from its normal place to the Guu's folder, and it's named *Unity.log*
+  - A log file called *`Injection.log`* is found within Guu's folder that provides a log of the injection process
+- The log file from Unity is copied from its normal place to the Guu's folder, and it's named *`Unity.log`*
 - Disables the Sentry SDK from the game to prevent messages from modded games going to Monomi Park.
 - Reads custom command line arguments to allow custom behaviours (modders can tap into this).
   - `--debug` - Runs the game in a sort of Debug Mode created by Guu
