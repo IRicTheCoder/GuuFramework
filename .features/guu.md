@@ -5,7 +5,7 @@ All features from Guu are listed here with some bullet points with their functio
 
 Documentation is currently being developed, this file will be dropped in favor to it once that is done.
 
-For context the **Guu Framework** is referenced to as **Guu**, while the **Eden Framework** is referenced to as **Eden**
+**For context** the **Guu Framework** is referenced to as **Guu**, while the **Eden Framework** is referenced to as **Eden**
 
 ### General
 These are just general features and each point just lists some important general information related to what the framework does and how it works.
@@ -14,7 +14,7 @@ These are just general features and each point just lists some important general
   - A log file called *`Injection.log`* is found within Guu's folder that provides a log of the injection process
 - The log file from Unity is copied from its normal place to the Guu's folder, and it's named *`Unity.log`*
 - Disables the Sentry SDK from the game to prevent messages from modded games going to Monomi Park.
-- Reads custom command line arguments to allow custom behaviours (modders can tap into this).
+- Reads custom command line arguments to allow custom behaviours, modders can also read those arguments if they so wish to.
   - `--debug` - Runs the game in a sort of Debug Mode created by Guu
   - `--guuDebug` - Activates Guu Debug Mode which presents further information (not required in most cases)
   - `--guuLauncher` - Added by the Launcher to check if the launcher was used to launch the game, prevents the game from launching if not set. Debug Mode ignores this.
@@ -32,26 +32,31 @@ These are just general features and each point just lists some important general
   - *`Guu/Saves`* - Currently is not being used, but will contain the current save files (copies of the ones in the appdata), and will contain Guu specific files.
   
 ### Addon Libraries
-Any library (.dll file) present inside *Guu/Libraries* will be loaded into the game as an addon library, this is useful to add new modules to Guu. This can also be used for the same purpose as the *Core Mods* from *Minecraft Forge*.
+Any library (`.dll` file) present inside *Guu/Libraries* will be loaded into the game as an addon library, this is useful to add new modules to Guu. This can also be used for the same purpose as the *Core Mods* from *Minecraft Forge*.
 
 - Allows modders to create new modules for Guu.
-- If the module contains a class that inherits from IAddonLoad, a call to that class will be done when loading the addon library.
+- If the module contains a `class` that inherits from `IAddonLoad`, a call to that `class` will be done when loading the addon library.
 
 ### Crash Handler
 The crash handler taps into the system to catch all and any crash that might occur inside the game, no exception/crash will be uncaught unless it occurs outside the normal runtime of the game, that is a limitation that can't be worked around at the moment.
 
 - Can capture any crash caused by the game, a mod or unity itself.
-- Provides a crash report with important info (found in *`Guu/Reports`*)
-- Will display a UI when the game crashes to show the crash report generated
-  - Allows to easily open the Log files to check what happened
-  - You can also copy the report text diretly to your clipboard
-  - There is a button to open the report folder
+- Provides a crash report with important info (found in *`Guu/Reports`*).
+- Will display a UI when the game crashes to show the crash report generated.
+  - Allows to easily open the Log files to check what happened.
+  - You can also copy the report text diretly to your clipboard.
+  - There is a button to open the report folder.
   
-### Enum Injector
+### `Enum` Injector
 > **This feature is not available when using another mod loader to load your mods**
 
-This uses the Enum Fixer availabe in Eden, to add enum values during runtime. And will facilitate the injection of enums into the game without conflicting with other enum patchers from other loaders. 
+This uses the `EnumFixer` available in Eden, to add `enum` values during runtime. And will facilitate the injection of any `enum` into the game without conflicting with other `enum` patchers from other loaders. 
 
-- Injects using EnumFixer provided by Eden
-- Enums can only be injected into the game during the Initialization step of the mod, meaning that it is only usable inside the `ModMain.Init()` method
-- Allows for enums to be injected dynamically
+- Injects using `EnumFixer` provided by Eden.
+- `Enums` can only be injected into the game during the Initialization step of the mod, meaning that it is only usable inside the `ModMain.Init()` method.
+- Allows for any `enum` to be injected dynamically.
+- Can use `EnumInject` annotation to mark a `class` for `enum` injection.
+  - Will inject and set the `field` value to the inject one for any `field` of any `enum` type.
+  - `Fields` must be `static` and `readonly`
+  - `Fields` need to have the default value of `0`
+- If the `enum` name already exists, it will populate the `field` with the current value instead of making a new one.
