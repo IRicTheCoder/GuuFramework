@@ -18,7 +18,7 @@ Harmony is used to make runtime patches to the code. When loading this library, 
 loaders). Modders can use this to make their patches but it's highly discourage as there is a better system in place.
 
 ### Eden Framework
-Eden is a framework developed by me (@RicardoTheCoder / RicTheCoder) mainly for game development, however it does serve a lot or purposes and contains a extensive and powerful library of code. Examples of this would be EdenHarmony an improved version of the Harmony's original system and the Event Handling system that allows better handling of C# events. A lot of useful tools are provided by this and modders can access it to use said tools.
+Eden is a framework developed by me ([RicTheCoder](https://ricthecoder.com/)) mainly for game development, however it does serve a lot or purposes and contains a extensive and powerful library of code. Examples of this would be EdenHarmony an improved version of the Harmony's original system and the Event Handling system that allows better handling of C# events. A lot of useful tools are provided by this and modders can access it to use said tools.
 
 **To patch the game** EdenHarmony is the go to system, it is easier to use, makes patch classes easier to read and has new functionality that the original Harmony does not provide.
 
