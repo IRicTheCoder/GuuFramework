@@ -32,7 +32,7 @@ _**Please note** that Eden is also in constant development, so sometimes Guu wil
 All features and their respective description can be found [here](https://github.com/RicardoTheCoder/GuuFramework/blob/main/.features/guu.md), as for documentation on each thing it is still being developed. All changelogs can be found [here](https://github.com/RicardoTheCoder/GuuFramework/tree/main/.changelogs)
 
 ### Eden Framework
-The important feature list for modding can be found [here](https://github.com/RicardoTheCoder/GuuFramework/blob/main/.features/eden.md), while the complete feature list and documentation can be found on Eden's Github page (currently unavailable).
+The important feature list for modding can be found on [Guu's Feature List](https://github.com/RicardoTheCoder/GuuFramework/blob/main/.features/[[0.1p-21312](../.changelogs/0.1p-21312.md)].md), while the complete feature list and documentation can be found on Eden's Github page (currently unavailable).
 
 ### Harmony
 All features and documentation for harmony can be found [here](https://harmony.pardeike.net/articles/intro.html).
