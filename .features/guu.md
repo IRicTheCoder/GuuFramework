@@ -87,7 +87,7 @@ Because you need a way to load mods if you want to use only Guu, a Mod loading s
 - Mods can set the flag `unsafe` on their *`modinfo.yaml`* to allow the use of things considered unsafe
   - Transpiler patches are only loaded by default if `unsafe` is `true`
 - Can check if mods or assemblies are loaded.
-  - `ModLoader.IsModLoaded(ID)` can be used to check, by ID, for those loaded by Guu. Or use the ID with special prefixes to check other loaders.
+  - `ModLoader.IsModLoaded(ID)` can be used to check, by *`ID`*, for those loaded by Guu. Or use the *`ID`* with special prefixes to check other loaders.
     - *`srml:ID`* can be used to check if SRML has a loaded mod with mod id *`ID`*.
     - *`assem:ID`* will call `ModLoader.IsAssemblyLoaded(name)` using *`ID`* as name.
   - `ModLoader.IsAssemblyLoaded(name)` can be used to check, by simplified name, if an assembly is loaded.
