@@ -27,7 +27,7 @@ These are just general features and each point just lists some important general
     - *`Guu/Framework/Libraries`* - Modders can reference the libraries/assemblies in this folder when making mods, otherwise leave it alone.
     - *`Guu/Framework/Tools`* - Modders can find useful tools here, look at the documentation to learn what each does, some of these tools are used by Guu when playing, so leave it alone if you are not using them when making your mods.
   - *`Guu/Libraries`* - The Addon Libraries to be loaded by Guu, you should only put files here when mods tell you to, otherwise leave it alone.
-  - *`Guu/Mods`* - The folder to place mods in, all mods need to have their own folder and a valid modinfo.yaml to be loaded. Unless stated otherwise Guu Mods go in here.
+  - *`Guu/Mods`* - The folder to place mods in, all mods need to have their own folder and a valid *`modinfo.yaml`* to be loaded. Unless stated otherwise Guu Mods go in here.
   - *`Guu/Reports`* - Crash reports will be created inside this folder, and only the last 10 will be available, older ones will be deleted automatically.
   - *`Guu/Saves`* - Currently is not being used, but will contain the current save files (copies of the ones in the appdata), and will contain Guu specific files.
   
@@ -55,7 +55,7 @@ This uses the `EnumFixer` available in Eden, to add enum values during runtime. 
 - Injects using `EnumFixer` provided by Eden.
 - Enums can only be injected into the game during the Initialization step of the mod, meaning that it is only usable inside the `ModMain.Init()` method.
 - Allows for any enum to be injected dynamically.
-- Can use `EnumInject` annotation to mark a class for enum injection.
+- Can use `[EnumInject]` annotation to mark a class for enum injection.
   - Will inject and set the field value to the injected one for any field of any enum type.
   - Fields must be `static` and `readonly`
   - Fields need to have the default value of `0`
@@ -75,23 +75,23 @@ Guu comes with a custom logging system in place to facilitate logging things int
 Because you need a way to load mods if you want to use only Guu, a Mod loading system is also provided so mods can be loaded into the game. To make sure loading is done right, some conventions are required to be upheld to make sure everything works as expected, so if said conventions are not upheld, the mod will not load.
 
 - Every mod needs to be inside its own folder.
-- Only mods that contain a valid modinfo.yaml file inside their folders will be loaded.
+- Only mods that contain a valid *`modinfo.yaml`* file inside their folders will be loaded.
 - Mods require a class to inherit from `ModMain` in order to have an entry point. 
   - If none is found the Loader will crash.
   - If more than one exists, a random one will be selected.
 - When loading, only the main assembly will be loaded into the game.
-- To load additional modules the `ModMain` class should have `ModModule` annotations identifying other modules to load.
+- To load additional modules the `ModMain` class should have `[ModModule]` annotations identifying other modules to load.
   - A mod can provide a dependency ID and version to only load if a dependency is loaded or exists.
-  - Multiple modules can be loaded, one for each `ModModule` annotation present.
+  - Multiple modules can be loaded, one for each `[ModModule]` annotation present.
   - Modules require a class to inherit from `ModuleMain` in other to have an entry point.
 - Can check if mods or assemblies are loaded.
   - `ModLoader.IsModLoaded(ID)` can be used to check, by ID, for those loaded by Guu. Or use the ID with special prefixes to check other loaders.
-    - `srml:ID` can be used to check if SRML has a loaded mod with mod id `ID`.
-    - `assem:ID` will call `ModLoader.IsAssemblyLoaded(name)` using ID as name.
+    - *`srml:ID`* can be used to check if SRML has a loaded mod with mod id *`ID`*.
+    - *`assem:ID`* will call `ModLoader.IsAssemblyLoaded(name)` using *`ID`* as name.
   - `ModLoader.IsAssemblyLoaded(name)` can be used to check, by simplified name, if an assembly is loaded.
 - For Modders use, using `ModLoader.GetAllUnknownAssemblies()` a file will be dumped into the Game's root folder with a list of all assemblies the loader couldn't identify.
-- Any field with `IsLoaded` annotation will be populated with the loading state of said mod by the `IsLoadedInjector`.
-  - The ID provided to `IsLoaded` follows the same rules used fofr `ModLoader.IsModLoaded(ID)`.
+- Any field with `[IsLoaded]` annotation will be populated with the loading state of said mod by the `IsLoadedInjector`.
+  - The ID provided to `[IsLoaded]` follows the same rules used fofr `ModLoader.IsModLoaded(ID)`.
   - Fields must be `static` and `readonly`.
   - Fields have to be of type `bool`.
 
