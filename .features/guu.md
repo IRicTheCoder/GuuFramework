@@ -100,7 +100,7 @@ Because you need a way to load mods if you want to use only Guu, a Mod loading s
 ## Asset Packs
 To facilitate the loading of assets into the game, Guu provides Asset Packs which are similar to Unity's *Asset Bundles*. These packs use the *Asset Bundle* under the hood to save assets from the *Unity Editor* and load them into the game. However they offer better methods to acquire assets from them, also they can load API Files automatically and register them. A tool to save them from within the editor is provided by Guu's Dev Kit.
 
-- Assets Packs are loaded with `AssetLoader`.
+- Asset Packs are loaded with `AssetLoader`.
   - Assets can be loaded from any given path.
   - Assets can be loaded from the mod's *`Assets`* folder directly.
 - Asset Packs use the *Asset Bundle* system under the hood, but are easier to use.
