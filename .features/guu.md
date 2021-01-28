@@ -232,7 +232,7 @@ Eden Harmony is an enhanced version of the Harmony system, it still depends on t
 - Better identification for patch methods (that use the `EdenHarmony.Wrapper` system).
   - Runs through all methods inside the patch classes to find methods to patch.
   - All methods follow the format *`MethodName_X#`*.
-    - For getters/setters use *'get_PropertyName'* or *'set_PropertyName'* respectively instead of *`MethodName`*.
+    - For getters/setters use *`get_PropertyName`* or *`set_PropertyName`* respectively instead of *`MethodName`*.
     - *`X`* is a suffix that identifies the type of patch.
     - *`#`* is a number to identify multiple patches of the same type for the same method. Useful in case of methods that contain multiple versions
   - If method ends with *`_Prefix#`* registers method as prefix.
