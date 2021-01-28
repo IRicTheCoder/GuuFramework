@@ -1,11 +1,14 @@
 # Guu Framework - Features
 All features from Guu are listed here with some bullet points with their functions as well as description of each main feature (or section). Some features do have small examples to explain them, but this is not a documentation file, it just tells you what features exist. This list contains the features available on the lastest version of the framework, when the documentation is done there will be a page to check when said feature was added as well as an improved version of the feature list.
 
-**PLEASE NOTE** that some features require the mods to be loaded by Guu itself, otherwise they won't work. Those features are identified, however, no feature can be guaranteed to work for mods loaded by a different loader.
-
 Documentation is currently being developed, this file will be dropped in favor to it once that is done.
 
 **For context** the **Guu Framework** is referenced to as **Guu**, while the **Eden Framework** is referenced to as **Eden**
+
+### Related to other loaders
+Guu is fully compatible with other mod loaders and should work fine alongside them. You can have Guu with UMF, SRML and any other mod loaders you might be using. It can also be used as a modding framework/library for your mod even if your mod is being loaded by another loader like SRML or UMF.
+
+**PLEASE NOTE** that some features require the mods to be loaded by Guu itself, otherwise they won't work. Those features are identified, however, no feature can be guaranteed to work for mods loaded by a different loader.
 
 ## General
 These are just general features and each point just lists some important general information related to what the framework does and how it works.
