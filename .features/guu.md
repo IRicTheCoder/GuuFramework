@@ -122,7 +122,7 @@ Guu provides services, those are features that are only loaded and used if a mod
 - Removes the console provided by SRML in favor of Guu's Console.
 - Registers all SRML Commands into Guu's Console.
   - Some commands will not be registered because they are equal to ones already present.
-  - If a command finds a conflic in terms of IDs, the prefix *`srml.`* will be added to the command's ID.
+  - If a command finds a conflict in terms of IDs, the prefix *`srml.`* will be added to the command's ID.
 - Redirects all Command Catchers from SRML to Guu's Console. They run after the Catchers from Guu's Console.
 - All logs done by SRML are redirected to Guu's Log System using the ID *`SRML`*.
 - Allows Guu to check if a SRML mod is loaded.
