@@ -1,9 +1,11 @@
 # Guu Framework - Features
-All features from Guu are listed here with some bullet points with their functions as well as description of each main feature (or section). Some features do have small examples to explain them, but this is not a documentation file, it just tells you what features exist. This list contains the features available on the lastest version of the framework, when the documentation is done there will be a page to check when said feature was added as well as an improved version of the feature list.
+All features from Guu are listed here with some bullet points with their functions as well as description of each main feature (or section). Some features do have small examples to explain them, but this is not a documentation file, it just tells you what features exist. This list contains the features available on the latest version of the framework, when the documentation is done there will be a page to check when said feature was added as well as an improved version of the feature list.
 
 Documentation is currently being developed, this file will be dropped in favor to it once that is done.
 
 **For context** the **Guu Framework** is referenced to as **Guu**, while the **Eden Framework** is referenced to as **Eden**
+
+**PLEASE NOTE** some features are experimental and will be marked as such with a `<EXPERIMENTAL>` tag. Those features should not be used in released mods, they are there so they can be tested and should only be used normally after they leave the experimental state.
 
 ### Related to other loaders
 Guu is fully compatible with other mod loaders and should work fine alongside them. You can have Guu with UMF, SRML and any other mod loaders you might be using. It can also be used as a modding framework/library for your mod even if your mod is being loaded by another loader like SRML or UMF.
@@ -23,8 +25,8 @@ These are just general features and each point just lists some important general
   - `--guuLauncher` - Added by the Launcher to check if the launcher was used to launch the game, prevents the game from launching if not set. Debug Mode ignores this.
   - `--guuSilent` - Prevents the game from reopening the launcher when the game closes. Debug Mode ignores this.
   - `--trace` - Prints a stack trace for every logged message.
-- The folder strucuture from Guu is as follows:
-  - *`Guu/Bindings`* - Contains the keybinds and button binds used by mods **(do not edit things unless you know what you are doing)**.
+- The folder structure from Guu is as follows:
+  - *`Guu/Bindings`* - Contains the key binds and button binds used by mods **(do not edit things unless you know what you are doing)**.
   - *`Guu/Configs`* - Currently is not being used, but will contain config files for mods.
   - *`Guu/Framework`* - This is the folder where the framework files reside **(do not mess with it, independent of if you know what you are doing or not)**.
     - *`Guu/Framework/Libraries`* - Modders can reference the libraries/assemblies in this folder when making mods, otherwise leave it alone.
@@ -47,7 +49,7 @@ The crash handler taps into the system to catch all and any crash that might occ
 - Provides a crash report with important info (found in *`Guu/Reports`*).
 - Will display a UI when the game crashes showing the generated crash report.
   - Allows to easily open the Log files to check what happened.
-  - You can also copy the report text diretly to your clipboard.
+  - You can also copy the report text directly to your clipboard.
   - There is a button to open the report folder.
   
 ## `Enum` Injector
@@ -169,7 +171,7 @@ A system that can get any asset or object from the game, these objects can be re
 The Plort Market is one of the most problematic things when registering new content, if the limit is reached, it will either crash the game or stop setting the values right. This fixes the problem by replacing the Market with a custom version.
 
 - Fixes the market display when the limit of plorts is exceeded
-- Plorts can now be hidden completly instead of just greyed out
+- Plorts can now be hidden completely instead of just greyed out
   - After being shown they will still be greyed out unless both states are unlocked by the same thing
 - Plort entries can check if a progress is achieved as well as the number of said progress
 
@@ -213,17 +215,16 @@ Eden Harmony is an enhanced version of the Harmony system, it still depends on t
   - This is only valid if you use `EdenHarmony` when patching.
   - A type can be passed to identify the type to patch.
   - When passing a type to the Wrapper the name of the class still needs to be *`TypeName_PatchX`*.
-  - If no type is provided to the Wrapper, you need to register a method to the event `EdenHarmony.TypeResolver`.
-    - The method registered needs to be part of the patch class, otherwise it won't be called.
-    - The registered method should return the correct type to be patched (the *`TypeName`* is provided for debug purposes).
-    - To ensure registration happens, you can use the static constructor to register the method into the event.
-  - If a method needs to be resolved, register a method to the event `EdenHarmony.MethodResolver`.
-    - The method registered needs to be part of the patch class, otherwise it won't be called.
-    - The registered method should return the valid method info based on the method name provided.
-    - A number will also be provided, to identify the patch number, in case of multiple patches of the same type.
-    - The static constructor can also be used to register this method.
+  - Alternatively, a string can be passed to try and get the type by it's name. (Useful for types that might not be loaded).
+    - When passing a string, the flag `ignore` can be set to `true` to ignore if getting the type fails instead of using the `_TypeResolve(Name)` method.
+  - If no type is provided or found by the Wrapper, you will need a method called `_TypeResolve(Name)` to resolve the type.
+    - The method should return the correct type to be patched, and receives the *`TypeName`*, mostly for debug purposes.
+  - If a method needs to be resolved, you will need a method called `_MethodResolve(Name, Number)` to resolve the method.
+    - The method should return the valid method info based on the method name it receives.
+    - A number (or null) is also provided to the method, to identify the patch number, in case of multiple patches of the same type. (The number depends on the method name)
   - Alternatively, methods can have the `[EdenHarmony.DefineOriginal]` annotation that provides the list of arguments to help clarify the method to patch.
-- Better readability for patch methods (that use the `EdenHarmony.Wrapper` system).
+  - Static constructors are executed for these classes before checking for patches, use it as you see fit.
+- Better readability for patch methods (that use the `[EdenHarmony.Wrapper]` system).
   - Methods will use `@Name` for values instead of the less readable `__Name`.
     - `__instance` is mapped to `@this`.
     - `__result` is mapped to `@return`.
@@ -232,19 +233,22 @@ Eden Harmony is an enhanced version of the Harmony system, it still depends on t
     - These are not mapped if a parameter, in the original method, has one of the names referenced above. (Ex: original method has parameter `@return`, then `__result` remains the same).
   - For private fields they are mapped to `_Name` from `___Name`.
   - Index based argument names `__n` remain the same.
-- Better identification for patch methods (that use the `EdenHarmony.Wrapper` system).
+- Better identification for patch methods (that use the `[EdenHarmony.Wrapper]` system).
   - Runs through all methods inside the patch classes to find methods to patch.
   - All methods follow the format *`MethodName_X#`*.
     - For getters/setters use *`get_PropertyName`* or *`set_PropertyName`* respectively instead of *`MethodName`*.
+    - For operators use *`op_OperatorName`* instead of *`MethodName`*.
     - *`X`* is a suffix that identifies the type of patch.
     - *`#`* is a number to identify multiple patches of the same type for the same method. Useful in case of methods that contain multiple versions
   - If method ends with *`_Prefix#`*, *`_Postfix#`* or *`_Transpiler#`* registers method as prefix, postfix or transpiler respectively.
     - Transpilers follow the original logic.
   - If method ends with *`_Catch#`* registers method as finalizer.
     - `__exception` is mapped to `@throw`.
-  - If method doesn't have a suffix (and exists in the type being patched) registers method as a resverse patch of type original.
+  - If method doesn't have a suffix (and exists in the type being patched) registers method as a reverse patch of type original.
     - These follow the original logic.
 - Patches can still be made by the normal harmony conventions.
+- Unlike `Harmony`, you can get any instance created from `EdenHarmony` using `EdenHarmony.GetInstance(ID)`.
+    - If the ID starts with *`<internal>`* the instance won't be stored and thus can't be obtained.
 - It is possible to execute base methods inside patched methods using `MethodBase.InvokeAsBase(args)`.
   - Depending on the patch, this might not be achievable, but it will not throw an error, just a warning.
 - Patches can be registered to be executed later instead of on the spot by using `EdenHarmony.LatePatchAll(args)`.
@@ -252,8 +256,12 @@ Eden Harmony is an enhanced version of the Harmony system, it still depends on t
 - Enums can now be fully patched.
   - Make a new enum and add the `[EdenHarmony.EnumWrapper]` annotation
   - EnumWrapper receives a type to identify the enum type being patched
-  - If the original enum contains the `[Flags]` annotation, this new enum requires it too
+  - Alternatively, a string can be passed to try and get the type by it's name. (Useful for types that might not be loaded).
+  - If no type is provided or found by the Wrapper, you need to register a method to the `EdenHarmony.EnumTypeResolve` event.
+    - The method registered can be stored anywhere.
+    - The registered method should return the correct type (that is a valid enum) to be patched (the patch type is provided).
+  - `<EXPERIMENTAL>` You can also patch enums that work as flags, meaning they have a `[Flags]` annotation.
+    - `<EXPERIMENTAL>` This new enum also needs to have the `[Flags]` annotation.
   - Set the second argument in EnumWrapper to `true` to take the numeric values in the new enum into account
     - For Flag enums this is ignored
   - To access the patched values just call them normally and do `Enum.As<T>()`
-  - **Patching Flag enums is still very experimental**
