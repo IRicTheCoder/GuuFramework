@@ -153,7 +153,7 @@ Controls the entire language and translation system within the game, and allows 
 - Adds support for `RTL` (Right to Left) languages.
 - Fixes the auto resizing of texts when the translated version is too big.
 - Can register alternative ids for languages instead of using the default ones provided by `Culture`.
-- Language files are .yaml for compatibility with most team localization tools (Ex: Crowdin).
+- Language files are *`.yaml`* for compatibility with most team localization tools (Ex: Crowdin).
 
 ## SR Objects
 A system that can get any asset or object from the game, these objects can be retrieved in two different ways, from the resources and/or from the world/scene.
