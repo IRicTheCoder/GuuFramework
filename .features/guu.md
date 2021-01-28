@@ -244,7 +244,7 @@ Eden Harmony is an enhanced version of the Harmony system, it still depends on t
 - Patches can still be made by the normal harmony conventions.
 - It is possible to execute base methods inside patched methods using `MethodBase.InvokeAsBase(args)`.
   - Depending on the patch, this might not be achievable, but it will not throw an error, just a warning.
-- Patches can be registered to be executed later than on the spot by using `EdenHarmony.LatePatchAll(args)`.
+- Patches can be registered to be executed later instead on the spot by using `EdenHarmony.LatePatchAll(args)`.
   - They can be later executed with `EdenHarmony.ExecuteLatePatches()`.
 - Enums can now be fully patched.
   - Make a new enum and add the `[EdenHarmony.EnumWrapper]` annotation
