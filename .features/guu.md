@@ -84,6 +84,8 @@ Because you need a way to load mods if you want to use only Guu, a Mod loading s
   - A mod can provide a dependency ID and version to only load if a dependency is loaded or exists.
   - Multiple modules can be loaded, one for each `[ModModule]` annotation present.
   - Modules require a class to inherit from `ModuleMain` in other to have an entry point.
+- Mods can set the flag `unsafe` on their *`modinfo.yaml`* to allow the use of things considered unsafe
+  - Transpiler patches are only loaded by default if `unsafe` is `true`
 - Can check if mods or assemblies are loaded.
   - `ModLoader.IsModLoaded(ID)` can be used to check, by ID, for those loaded by Guu. Or use the ID with special prefixes to check other loaders.
     - *`srml:ID`* can be used to check if SRML has a loaded mod with mod id *`ID`*.
