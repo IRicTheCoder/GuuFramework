@@ -114,7 +114,7 @@ Guu provides services, those are features that are only loaded and used if a mod
 
 - System Windows, this service allows mods to register windows that are part of the system and not the game.
   - There windows use the *IMGUI* or *Legacy GUI* system provided by Unity to draw them.
-  - They serve as windows that interface with the game directly and are used as special menus for mods (Ex: Console, Cheat Menu...).
+  - They serve as windows that interface with the game indirectly and are used as special menus for mods (Ex: Console, Cheat Menu...).
   
 ## SRML Bridge
 **This only gets loaded if SRML is present** and is used as a Bridge to better integrate them together, this is required to prevent both loaders from overlapping each other and causing unnecessary problems.
