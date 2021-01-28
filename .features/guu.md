@@ -93,7 +93,7 @@ Because you need a way to load mods if you want to use only Guu, a Mod loading s
   - `ModLoader.IsAssemblyLoaded(name)` can be used to check, by simplified name, if an assembly is loaded.
 - For Modders use, using `ModLoader.GetAllUnknownAssemblies()` a file will be dumped into the Game's root folder with a list of all assemblies the loader couldn't identify.
 - Any field with `[IsLoaded]` annotation will be populated with the loading state of said mod by the `IsLoadedInjector`.
-  - The ID provided to `[IsLoaded]` follows the same rules used fofr `ModLoader.IsModLoaded(ID)`.
+  - The *`ID`* provided to `[IsLoaded]` follows the same rules used for `ModLoader.IsModLoaded(ID)`.
   - Fields must be `static` and `readonly`.
   - Fields have to be of type `bool`.
 
