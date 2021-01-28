@@ -140,7 +140,7 @@ The almighty Guu console that also works as a Cheat Menu and some other things. 
 - Can register command catchers.
   - Command Catchers will be able to catch console input before any command is executed.
   - A command catcher can prevent a command's execution and/or check the current execution state.
-  - Methods registered as Command Catchers can use the `EventPriority` annotation from Eden to change their execution priority.
+  - Methods registered as Command Catchers can use the `[EventPriority]` annotation from Eden to change their execution priority.
   - Registering the same method more than once won't make it run multiple times, as the catchers are invoked as unique.
 - All items, except command catchers, can have the replace flag set to `true` to replace values if conflicts arise.
 
