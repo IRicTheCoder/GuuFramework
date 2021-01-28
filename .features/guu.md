@@ -215,6 +215,7 @@ Eden Harmony is an enhanced version of the Harmony system, it still depends on t
     - To ensure registration happens, you can use the static constructor to register the method into the event.
   - If a method needs to be resolved, register a method to `EdenHarmony.MethodResolver`.
     - The method should return the valid method info based on the method name provided.
+    - A number will also be provided, to identify the patch number, in case of multiple patches of the same type.
     - The static constructor can also be used to register this method.
   - Alternatively, methods can have the `[EdenHarmony.DefineOriginal]` annotation that provides the list of arguments to help clarify the method to patch.
 - Better readability for patch methods (that use the `EdenHarmony.Wrapper` system).
@@ -231,7 +232,7 @@ Eden Harmony is an enhanced version of the Harmony system, it still depends on t
   - All methods follow the format *`MethodName_X#`*.
     - For getters/setters use *'get_PropertyName'* or *'set_PropertyName'* respectively instead of *`MethodName`*.
     - *`X`* is a suffix that identifies the type of patch.
-    - *`#`* is a number to identify multiple patches of the same type for the same method. Useful in case of methods that contain multiple entries
+    - *`#`* is a number to identify multiple patches of the same type for the same method. Useful in case of methods that contain multiple versions
   - If method ends with *`_Prefix#`* registers method as prefix.
   - If method ends with *`_Postfix#`* registers method as postfix.
   - If method ends with *`_Transpiler#`* registers method as transpiler.
