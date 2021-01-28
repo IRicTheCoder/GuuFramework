@@ -235,12 +235,10 @@ Eden Harmony is an enhanced version of the Harmony system, it still depends on t
     - For getters/setters use *`get_PropertyName`* or *`set_PropertyName`* respectively instead of *`MethodName`*.
     - *`X`* is a suffix that identifies the type of patch.
     - *`#`* is a number to identify multiple patches of the same type for the same method. Useful in case of methods that contain multiple versions
-  - If method ends with *`_Prefix#`* registers method as prefix.
-  - If method ends with *`_Postfix#`* registers method as postfix.
-  - If method ends with *`_Transpiler#`* registers method as transpiler.
+  - If method ends with *`_Prefix#`*, *`_Postfix#`* or *`_Transpiler#`* registers method as prefix, postfix or transpiler respectively.
     - Transpilers follow the original logic.
   - If method ends with *`_Catch#`* registers method as finalizer.
-    - '__exception' is now mapped to '@throw'.
+    - '__exception' is mapped to '@throw'.
   - If method doesn't have a suffix (and exists in the type being patched) registers method as a resverse patch of type original.
     - These follow the original logic.
 - Patches can still be made by the normal harmony conventions.
