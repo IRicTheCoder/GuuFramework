@@ -11,21 +11,21 @@ Documentation is currently being developed, this file will be dropped in favor t
 These are just general features and each point just lists some important general information related to what the framework does and how it works.
 
 - Uses Doorstop (previously known as Unity Doorstop) to load the assembly into the game without patching any of the game's files. 
-  - A log file called *`Injection.log`* is found within Guu's folder that provides a log of the injection process
+  - A log file called *`Injection.log`* is found within Guu's folder that provides a log of the injection process.
 - The log file from Unity is copied from its normal place to the Guu's folder, and it's named *`Unity.log`*
 - Disables the Sentry SDK from the game to prevent messages from modded games going to Monomi Park.
 - Reads custom command line arguments to allow custom behaviours, modders can also read those arguments if they so wish to.
-  - `--debug` - Runs the game in a sort of Debug Mode created by Guu
-  - `--guuDebug` - Activates Guu Debug Mode which presents further information (not required in most cases)
+  - `--debug` - Runs the game in a sort of Debug Mode created by Guu.
+  - `--guuDebug` - Activates Guu Debug Mode which presents further information (not required in most cases).
   - `--guuLauncher` - Added by the Launcher to check if the launcher was used to launch the game, prevents the game from launching if not set. Debug Mode ignores this.
   - `--guuSilent` - Prevents the game from reopening the launcher when the game closes. Debug Mode ignores this.
-  - `--trace` - Prints a stack trace for every logged message
+  - `--trace` - Prints a stack trace for every logged message.
 - The folder strucuture from Guu is as follows:
-  - *`Guu/Bindings`* - Contains the keybinds and button binds used by mods **(do not edit things unless you know what you are doing)**
-  - *`Guu/Configs`* - Currently is not being used, but will contain config files for mods
-  - *`Guu/Framework`* - This is the folder where the framework files reside **(do not mess with it, independent of if you know what you are doing or not)**
+  - *`Guu/Bindings`* - Contains the keybinds and button binds used by mods **(do not edit things unless you know what you are doing)**.
+  - *`Guu/Configs`* - Currently is not being used, but will contain config files for mods.
+  - *`Guu/Framework`* - This is the folder where the framework files reside **(do not mess with it, independent of if you know what you are doing or not)**.
     - *`Guu/Framework/Libraries`* - Modders can reference the libraries/assemblies in this folder when making mods, otherwise leave it alone.
-    - *`Guu/Framework/Tools`* - Modders can find useful tools here, look at the documentation to learn what each does, some of this tools are used by Guu when playing, so leave it alone if you are not using them when making your mods.
+    - *`Guu/Framework/Tools`* - Modders can find useful tools here, look at the documentation to learn what each does, some of these tools are used by Guu when playing, so leave it alone if you are not using them when making your mods.
   - *`Guu/Libraries`* - The Addon Libraries to be loaded by Guu, you should only put files here when mods tell you to, otherwise leave it alone.
   - *`Guu/Mods`* - The folder to place mods in, all mods need to have their own folder and a valid modinfo.yaml to be loaded. Unless stated otherwise Guu Mods go in here.
   - *`Guu/Reports`* - Crash reports will be created inside this folder, and only the last 10 will be available, older ones will be deleted automatically.
@@ -42,7 +42,7 @@ The crash handler taps into the system to catch all and any crash that might occ
 
 - Can capture any crash caused by the game, a mod or unity itself.
 - Provides a crash report with important info (found in *`Guu/Reports`*).
-- Will display a UI when the game crashes to show the crash report generated.
+- Will display a UI when the game crashes showing the generated crash report.
   - Allows to easily open the Log files to check what happened.
   - You can also copy the report text diretly to your clipboard.
   - There is a button to open the report folder.
@@ -56,7 +56,7 @@ This uses the `EnumFixer` available in Eden, to add enum values during runtime. 
 - Enums can only be injected into the game during the Initialization step of the mod, meaning that it is only usable inside the `ModMain.Init()` method.
 - Allows for any enum to be injected dynamically.
 - Can use `EnumInject` annotation to mark a class for enum injection.
-  - Will inject and set the field value to the inject one for any field of any enum type.
+  - Will inject and set the field value to the injected one for any field of any enum type.
   - Fields must be `static` and `readonly`
   - Fields need to have the default value of `0`
 - If the enum name already exists, it will populate the field with the current value instead of making a new one.
@@ -72,7 +72,7 @@ Guu comes with a custom logging system in place to facilitate logging things int
 ## Mod Loader
 > **This feature is not available when using another mod loader to load your mods**
 
-Because you need a way to load mods if you want to use only Guu, a Mod loading system is also provided so mods can be loaded into the game. To make sure loading is done right, some conventions are required to be uphold to make sure everything works as expected, so if said conventions are not uphold, the mod will not load.
+Because you need a way to load mods if you want to use only Guu, a Mod loading system is also provided so mods can be loaded into the game. To make sure loading is done right, some conventions are required to be upheld to make sure everything works as expected, so if said conventions are not upheld, the mod will not load.
 
 - Every mod needs to be inside its own folder.
 - Only mods that contain a valid modinfo.yaml file inside their folders will be loaded.
@@ -86,7 +86,7 @@ Because you need a way to load mods if you want to use only Guu, a Mod loading s
   - Modules require a class to inherit from `ModuleMain` in other to have an entry point.
 - Can check if mods or assemblies are loaded.
   - `ModLoader.IsModLoaded(ID)` can be used to check, by ID, for those loaded by Guu. Or use the ID with special prefixes to check other loaders.
-    - `srml:ID` can be used to check if there SRML has a loaded mod with mod id ID.
+    - `srml:ID` can be used to check if SRML has a loaded mod with mod id `ID`.
     - `assem:ID` will call `ModLoader.IsAssemblyLoaded(name)` using ID as name.
   - `ModLoader.IsAssemblyLoaded(name)` can be used to check, by simplified name, if an assembly is loaded.
 - For Modders use, using `ModLoader.GetAllUnknownAssemblies()` a file will be dumped into the Game's root folder with a list of all assemblies the loader couldn't identify.
@@ -96,7 +96,7 @@ Because you need a way to load mods if you want to use only Guu, a Mod loading s
   - Fields have to be of type `bool`.
 
 ## Asset Packs
-To facilitate the load of assets into the game, Guu provides Asset Packs which are similar to Unity's *Asset Bundles*. These packs use the *Asset Bundle* under the hood to save assets from the *Unity Editor* and load them into the game. However they offer better methods to acquire assets from them, also they can load API Files automatically and register them. A tool to save them from within the editor is provided by Guu's Dev Kit.
+To facilitate the loading of assets into the game, Guu provides Asset Packs which are similar to Unity's *Asset Bundles*. These packs use the *Asset Bundle* under the hood to save assets from the *Unity Editor* and load them into the game. However they offer better methods to acquire assets from them, also they can load API Files automatically and register them. A tool to save them from within the editor is provided by Guu's Dev Kit.
 
 - Assets Packs are loaded with `AssetLoader`.
   - Assets can be loaded from any given path.
@@ -111,15 +111,15 @@ To facilitate the load of assets into the game, Guu provides Asset Packs which a
 Guu provides services, those are features that are only loaded and used if a mod asks for them, so they will be inactive until some mod initializes them. There are two services that are always running, they are considered services because they are only truly useful game wise if a mod uses them, but Guu also taps into them to do some of it's work.
 
 - System Windows, this service allows mods to register windows that are part of the system and not the game.
-  - There windows use the *IMGUI* or *Legacy GUI* system provided by Unity draw them.
-  - They serve as windows that do interface with the game directly and are used as special menus for mods (Ex: Console, Cheat Menu...).
+  - There windows use the *IMGUI* or *Legacy GUI* system provided by Unity to draw them.
+  - They serve as windows that interface with the game directly and are used as special menus for mods (Ex: Console, Cheat Menu...).
   
 ## SRML Bridge
-**This only gets loaded if SRML is present** and is used as a Bridge to better integrate them together, this is required to prevent both loader from overlapping each other and causing unnecessary problems.
+**This only gets loaded if SRML is present** and is used as a Bridge to better integrate them together, this is required to prevent both loaders from overlapping each other and causing unnecessary problems.
 
 - Removes the console provided by SRML in favor of Guu's Console.
 - Registers all SRML Commands into Guu's Console.
-  - Some commands will not be registered cause they are equal to ones already present.
+  - Some commands will not be registered because they are equal to ones already present.
   - If a command finds a conflic in terms of IDs, the prefix *`srml.`* will be added to the command's ID.
 - Redirects all Command Catchers from SRML to Guu's Console. They run after the Catchers from Guu's Console.
 - All logs done by SRML are redirected to Guu's Log System using the ID *`SRML`*.
@@ -177,12 +177,12 @@ Just some general features that can greatly improve development in any sense.
 - Allows the easy creation of Singletons.
 
 ## `Event` Handling
-Improves the event handling system provided by C#, making this system far more powerful and useful then just the normal registration and invocation features. This does not override the default system and that can still be used to bypass the handler.
+Improves the event handling system provided by C#, making this system far more powerful and useful then just the normal registration and invocation features. This does not override the default system and so the default can still be used to bypass the handler.
 
 - Upgrades the current `event` system provided by C#.
 - To use the upgraded system use `event.Handle(args)` or `event.Handle<R>(args)` instead of the normal `event.Invoke(args)`.
   - Can force events to only trigger unique methods, so repetitions won't be called, by setting the `unique` parameter to `true`.
-  - Can provide context to each method called by the event by setting the `provider` parament to a `IContextProvider` instance.
+  - Can provide context to each method called by the event by setting the `provider` parameter to a `IContextProvider` instance.
   - Each method in the call can get the value returned by the last method called using `EventHandler.LastResult<T>()`
 - Can use `event.HandleSpecific<T>(args)` or `event.HandleSpecific(args)` to only call methods that belong to the type provided.
 - Sorts method calls by priority when the event is triggered.
@@ -198,7 +198,7 @@ Grants the ability to add custom enum values and names during runtime, this does
 - All values start at `1000000` (1 million) to avoid problems.
 
 ## Eden Harmony
-Eden Harmony is an enhanced version of the Harmony system, it still depends on the Harmony library to work and simply improves things on top of it. It also adds a different (and maybe better) way to design patch classes. All these features require the use o `EdenHarmony` instead of `Harmony`, the first inherits from the latter so only `EdenHarmony` needs to be called even if patches from the original systema are present.
+Eden Harmony is an enhanced version of the Harmony system, it still depends on the Harmony library to work and simply improves things on top of it. It also adds a different (and maybe better) way to design patch classes. All these features require the use of `EdenHarmony` instead of `Harmony`, the first inherits from the latter so only `EdenHarmony` needs to be called even if patches from the original system are present.
 
 - Patch class names need to always be *`TypeName_PatchX`*.
   - *`TypeName`* is the name of the type to patch.
