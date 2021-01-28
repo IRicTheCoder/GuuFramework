@@ -228,14 +228,15 @@ Eden Harmony is an enhanced version of the Harmony system, it still depends on t
   - Index based argument names `__n` remain the same.
 - Better identification for patch methods (that use the `EdenHarmony.Wrapper` system).
   - Runs through all methods inside the patch classes to find methods to patch.
-  - All methods follow the format *`MethodName_X`*.
+  - All methods follow the format *`MethodName_X#`*.
     - For getters/setters use *'get_PropertyName'* or *'set_PropertyName'* respectively instead of *`MethodName`*.
     - *`X`* is a suffix that identifies the type of patch.
-  - If method ends with *`_Prefix`* registers method as prefix.
-  - If method ends with *`_Postfix`* registers method as postfix.
-  - If method ends with *`_Transpiler`* registers method as transpiler.
+    - *`#`* is a number to identify multiple patches of the same type for the same method. Useful in case of methods that contain multiple entries
+  - If method ends with *`_Prefix#`* registers method as prefix.
+  - If method ends with *`_Postfix#`* registers method as postfix.
+  - If method ends with *`_Transpiler#`* registers method as transpiler.
     - Transpilers follow the original logic.
-  - If method ends with *`_Catch`* registers method as finalizer.
+  - If method ends with *`_Catch#`* registers method as finalizer.
     - '__exception' is now mapped to '@throw'.
   - If method doesn't have a suffix (and exists in the type being patched) registers method as a resverse patch of type original.
     - These follow the original logic.
