@@ -227,7 +227,7 @@ Eden Harmony is an enhanced version of the Harmony system, it still depends on t
     - `__state` is mapped to `@state`.
     - `__originalMethod` is mapped to `@origin`.
     - These are not mapped if a parameter, in the original method, has one of the names referenced above. (Ex: original method has parameter `@return`, then `__result` remains the same).
-  - For private fields they are also `_Name` instead of `___Name`.
+  - For private fields they are mapped to `_Name` from `___Name`.
   - Index based argument names `__n` remain the same.
 - Better identification for patch methods (that use the `EdenHarmony.Wrapper` system).
   - Runs through all methods inside the patch classes to find methods to patch.
