@@ -216,7 +216,7 @@ Eden Harmony is an enhanced version of the Harmony system, it still depends on t
   - A type can be passed to identify the type to patch.
   - When passing a type to the Wrapper the name of the class still needs to be *`TypeName_PatchX`*.
   - Alternatively, a string can be passed to try and get the type by it's name. (Useful for types that might not be loaded).
-    - When passing a string, the flag `ignore` can be set to `true` to ignore if getting the type fails instead of using the `_TypeResolve(Name)` method.
+    - When passing a string, the flag `ignore` can be set to `true` to ignore any errors. In this case `_TypeResolve(Name)` won't be called and the patcher will move on.
   - If no type is provided or found by the Wrapper, you will need a method called `_TypeResolve(Name)` to resolve the type.
     - The method should return the correct type to be patched, and receives the *`TypeName`*, mostly for debug purposes.
   - If a method needs to be resolved, you will need a method called `_MethodResolve(Name, Number)` to resolve the method.
