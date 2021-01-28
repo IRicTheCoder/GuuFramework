@@ -210,11 +210,13 @@ Eden Harmony is an enhanced version of the Harmony system, it still depends on t
   - This is only valid if you use `EdenHarmony` when patching.
   - A type can be passed to identify the type to patch.
   - When passing a type to the Wrapper the name of the class still needs to be *`TypeName_PatchX`*.
-  - If no type is provided to the Wrapper, you need to register a method to `EdenHarmony.TypeResolver`.
-    - The method should return the correct type to be patched (the *`TypeName`* is provided).
+  - If no type is provided to the Wrapper, you need to register a method to the event `EdenHarmony.TypeResolver`.
+    - The method registered needs to be part of the patch class, otherwise it won't be called.
+    - The registered method should return the correct type to be patched (the *`TypeName`* is provided for debug purposes).
     - To ensure registration happens, you can use the static constructor to register the method into the event.
-  - If a method needs to be resolved, register a method to `EdenHarmony.MethodResolver`.
-    - The method should return the valid method info based on the method name provided.
+  - If a method needs to be resolved, register a method to the event `EdenHarmony.MethodResolver`.
+    - The method registered needs to be part of the patch class, otherwise it won't be called.
+    - The registered method should return the valid method info based on the method name provided.
     - A number will also be provided, to identify the patch number, in case of multiple patches of the same type.
     - The static constructor can also be used to register this method.
   - Alternatively, methods can have the `[EdenHarmony.DefineOriginal]` annotation that provides the list of arguments to help clarify the method to patch.
@@ -224,7 +226,7 @@ Eden Harmony is an enhanced version of the Harmony system, it still depends on t
     - `__result` is mapped to `@return`.
     - `__state` is mapped to `@state`.
     - `__originalMethod` is mapped to `@origin`.
-    - These are not mapped if a parameter with a `@` in their name matches one of those. (Ex: method has parameter `@return`, then `__result` remains the same).
+    - These are not mapped if a parameter, in the original methdo, with an `@` in their name matches one of those. (Ex: original method has parameter `@return`, then `__result` remains the same).
   - For private fields they are also `_Name` instead of `___Name`.
   - Index based argument names `__n` remain the same.
 - Better identification for patch methods (that use the `EdenHarmony.Wrapper` system).
