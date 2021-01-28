@@ -242,7 +242,7 @@ Eden Harmony is an enhanced version of the Harmony system, it still depends on t
   - If method doesn't have a suffix (and exists in the type being patched) registers method as a resverse patch of type original.
     - These follow the original logic.
 - Patches can still be made by the normal harmony conventions.
-- It is possible to execute base methods inside patches methods using `MethodBase.InvokeAsBase(args)`.
+- It is possible to execute base methods inside patched methods using `MethodBase.InvokeAsBase(args)`.
   - Depending on the patch, this might not be achievable, but it will not throw an error, just a warning.
 - Patches can be registered to be executed later than on the spot by using `EdenHarmony.LatePatchAll(args)`.
   - They can be later executed with `EdenHarmony.ExecuteLatePatches()`.
