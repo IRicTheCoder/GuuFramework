@@ -233,9 +233,7 @@ Eden Harmony is an enhanced version of the Harmony system, it still depends on t
   - For private fields they are mapped from `___Name` to `p_Name`.
     - Because of some limitations, you cannot access a specific private field if the parameter `p_Name` conflicts with the name of a parameter from the original method.
     - To circumvent this you should use `AccessTools` provided by Harmony, to obtain that specific field.
-  - Zero-index based parameter names `__N` are mapped to `i_N`.
-    - Because of some limitations, you cannot access a specific parameter field if the parameter `i_N` conflicts with the name of a parameter from the original method.
-    - To circumvent this you could use `AccessTools` provided by Harmony, to obtain that specific parameter.
+  - Zero-index based parameter names `__N` will not work with this method of patching.
 - Better identification for patch methods (that use the `[EdenHarmony.Wrapper]` system).
   - Runs through all methods inside the patch classes to find methods to patch.
   - All methods follow the format *`MethodName_X#`*.
