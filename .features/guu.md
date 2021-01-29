@@ -250,8 +250,8 @@ Eden Harmony is an enhanced version of the Harmony system, it still depends on t
 - Patches can still be made by the normal harmony conventions.
 - Unlike `Harmony`, you can get any instance created from `EdenHarmony` using `EdenHarmony.GetInstance(ID)`.
     - If the ID starts with *`<internal>`* the instance won't be stored and thus can't be obtained.
-- It is possible to execute base methods inside patched methods using `MethodBase.InvokeAsBase(args)`.
-  - Depending on the patch, this might not be achievable, but it will not throw an error, just a warning.
+- `<EXPERIMENTAL>` It is possible to execute base methods inside patched methods using `MethodBase.InvokeAsBase(args)`.
+  - `<EXPERIMENTAL>` Depending on the patch, this might not be achievable, but it will not throw an error, just a warning.
 - Patches can be registered to be executed later instead of on the spot by using `EdenHarmony.LatePatchAll(args)`.
   - They can be executed later with `EdenHarmony.ExecuteLatePatches()`.
 - Enums can now be fully patched.
