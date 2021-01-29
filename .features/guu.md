@@ -226,13 +226,16 @@ Eden Harmony is an enhanced version of the Harmony system, it still depends on t
   - Static constructors are executed for these classes before checking for patches, use it as you see fit.
 - Better readability for patch methods (that use the `[EdenHarmony.Wrapper]` system).
   - Methods will use `@Name` for values instead of the less readable `__Name`.
-    - `__instance` is mapped to `@this`.
-    - `__result` is mapped to `@return`.
-    - `__state` is mapped to `@state`.
-    - `__originalMethod` is mapped to `@origin`.
-    - These are not mapped if a parameter, in the original method, has one of the names referenced above. (Ex: original method has parameter `@return`, then `__result` remains the same).
-  - For private fields they are mapped to `_Name` from `___Name`.
-  - Index based argument names `__n` remain the same.
+    - `__instance` is mapped to `@this`. If the original method contains a parameter named `@this`, maps to `__this` instead.
+    - `__result` is mapped to `@return`. If the original method contains a parameter named `@return`, maps to `__return` instead.
+    - `__state` is mapped to `@var`. If the original method contains a parameter named `@var`, maps to `__var` instead.
+    - `__originalMethod` is mapped to `@default`. If the original method contains a parameter named `@default`, maps to `__default` instead.
+  - For private fields they are mapped from `___Name` to `p_Name`.
+    - Because of some limitations, you cannot access a specific private field if the parameter `p_Name` conflicts with the name of a parameter from the original method.
+    - To circumvent this you should use `AccessTools` provided by Harmony, to obtain that specific field.
+  - Zero-index based parameter names `__N` are mapped to `i_N`.
+    - Because of some limitations, you cannot access a specific parameter field if the parameter `i_N` conflicts with the name of a parameter from the original method.
+    - To circumvent this you could use `AccessTools` provided by Harmony, to obtain that specific parameter.
 - Better identification for patch methods (that use the `[EdenHarmony.Wrapper]` system).
   - Runs through all methods inside the patch classes to find methods to patch.
   - All methods follow the format *`MethodName_X#`*.
