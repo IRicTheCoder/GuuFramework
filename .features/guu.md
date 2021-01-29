@@ -244,7 +244,7 @@ Eden Harmony is an enhanced version of the Harmony system, it still depends on t
   - If method ends with *`_Prefix#`*, *`_Postfix#`* or *`_Transpiler#`* registers method as prefix, postfix or transpiler respectively.
     - Transpilers follow the original logic.
   - If method ends with *`_Catch#`* registers method as finalizer.
-    - `__exception` is mapped to `@throw`.
+    - `__exception` is mapped to `@throw`. If the original method contains a parameter named `@throw`, maps to `__throw` instead.
   - If method doesn't have a suffix (and exists in the type being patched) registers method as a reverse patch of type original.
     - These follow the original logic.
 - Patches can still be made by the normal harmony conventions.
