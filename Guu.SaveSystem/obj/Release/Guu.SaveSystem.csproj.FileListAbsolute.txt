@@ -1,0 +1,5 @@
+H:\SteamLibrary\steamapps\common\Slime Rancher\Guu\Framework\Libraries\Guu.SaveSystem.xml
+H:\SteamLibrary\steamapps\common\Slime Rancher\Guu\Framework\Libraries\Guu.SaveSystem.dll
+I:\Modding\Guu Framework\Repository\Guu.SaveSystem\obj\Release\Guu.SaveSystem.csproj.CoreCompileInputs.cache
+I:\Modding\Guu Framework\Repository\Guu.SaveSystem\obj\Release\Guu.SaveSystem.dll
+I:\Modding\Guu Framework\Repository\Guu.SaveSystem\obj\Release\Guu.SaveSystem.csproj.AssemblyReference.cache

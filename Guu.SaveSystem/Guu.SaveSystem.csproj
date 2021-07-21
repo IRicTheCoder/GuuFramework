@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{BA4AF742-4FE6-4137-B0E2-31CC9565B4DC}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>Guu.SaveSystem</RootNamespace>
+        <AssemblyName>Guu.SaveSystem</AssemblyName>
+        <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>none</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>H:\SteamLibrary\steamapps\common\Slime Rancher\Guu\Framework\Libraries</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <DocumentationFile>H:\SteamLibrary\steamapps\common\Slime Rancher\Guu\Framework\Libraries\Guu.SaveSystem.xml</DocumentationFile>
+    </PropertyGroup>
+    <ItemDefinitionGroup>
+        <Reference>
+            <Private>False</Private>
+        </Reference>
+        <ProjectReference>
+            <Private>False</Private>
+        </ProjectReference>
+    </ItemDefinitionGroup>
+    <ItemGroup>
+        <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <HintPath>H:\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\Assembly-CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="Eden.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <HintPath>H:\SteamLibrary\steamapps\common\Slime Rancher\Guu\Framework\Libraries\Eden.Core.dll</HintPath>
+        </Reference>
+        <Reference Include="EdenUnity.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <HintPath>H:\SteamLibrary\steamapps\common\Slime Rancher\Guu\Framework\Libraries\EdenUnity.Core.dll</HintPath>
+        </Reference>
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Xml" />
+        <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <HintPath>H:\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="SaveHandler.Load.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="SaveHandler.Save.cs" />
+        <Compile Include="SaveHandler.Utility.cs" />
+        <Compile Include="_Old\Components\ModdedData.cs" />
+        <Compile Include="_Old\Components\ModdedData.Functions.cs" />
+        <Compile Include="_Old\ModdedSaveData.cs" />
+        <Compile Include="_Old\ModdedSaveHandler.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\Guu.API\Guu.API.csproj">
+        <Project>{25e883b7-d75d-463e-bfef-1fe77d68066c}</Project>
+        <Name>Guu.API</Name>
+      </ProjectReference>
+      <ProjectReference Include="..\Guu.Core\Guu.Core.csproj">
+        <Project>{4dae6898-18d7-49c1-9580-33a899140f3d}</Project>
+        <Name>Guu.Core</Name>
+      </ProjectReference>
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+
+</Project>
